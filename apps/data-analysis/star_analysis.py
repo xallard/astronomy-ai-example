@@ -8,6 +8,7 @@ from astropy.coordinates import SkyCoord
 from astropy.io import fits
 from astropy.table import Table
 
+
 class StarAnalyzer:
     def __init__(self, fits_file):
         self.fits_file = fits_file
@@ -25,19 +26,20 @@ class StarAnalyzer:
         """
         Calculate and return the sky coordinates of stars
         """
-        ra = self.star_data['ra'] * u.degree
-        dec = self.star_data['dec'] * u.degree
-        return SkyCoord(ra, dec, frame='icrs')
+        ra = self.star_data["ra"] * u.degree
+        dec = self.star_data["dec"] * u.degree
+        return SkyCoord(ra, dec, frame="icrs")
 
     def filter_by_brightness(self, min_brightness):
         """
         Filter and return stars above a certain brightness threshold
         """
-        return self.star_data[self.star_data['brightness'] > min_brightness]
+        return self.star_data[self.star_data["brightness"] > min_brightness]
+
 
 # Example usage
 if __name__ == "__main__":
-    analyzer = StarAnalyzer('path/to/your/fits/file.fits')
+    analyzer = StarAnalyzer("path/to/your/fits/file.fits")
     analyzer.load_data()
 
     coordinates = analyzer.calculate_coordinates()
